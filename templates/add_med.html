@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Medication</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: system-ui, sans-serif;
+            background: linear-gradient(160deg, #1e2a78, #4c2a85);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            width: 360px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        h1 { margin: 0 0 24px; font-size: 22px; color: #fff; }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 14px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 15px;
+            font-family: inherit;
+        }
+        input::placeholder { color: rgba(255,255,255,0.3); }
+        input:focus, select:focus { outline: none; border-color: #a78bfa; }
+        /* dropdown options render on the OS layer, need their own dark color */
+        option { background: #2a2560; }
+        button {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #4f9cf9, #a855f7);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .back {
+            display: block;
+            margin-top: 16px;
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>New medication</h1>
+        <form method="POST">
+            <!-- shows the name, submits the id — that's the foreign key -->
+            <select name="patient_id" required>
+                {% for p in patients %}
+                    <option value="{{ p.id }}">{{ p.name }}</option>
+                {% endfor %}
+            </select>
+
+            <input type="text" name="med_name" placeholder="Med name" required>
+            <input type="text" name="dosage" placeholder="Dosage (e.g. 1 mg)" required>
+            <input type="time" name="reminder_time" required>
+            <input type="text" name="frequency" placeholder="daily" required>
+
+            <button type="submit">Add medication</button>
+        </form>
+        <a class="back" href="/">← back</a>
+    </div>
+</body>
+</html>

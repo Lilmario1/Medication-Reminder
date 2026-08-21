@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medication Reminder</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: system-ui, sans-serif;
+            background: #fdfcfa;
+            color: #2d2a4a;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 48px 20px;
+        }
+        h1 { margin: 0 0 6px; font-size: 28px; color: #3d2b8f; }
+        .sub {
+            margin: 0 0 24px;
+            color: #6b6880;
+            font-size: 15px;
+        }
+        .actions { margin-bottom: 28px; }
+        .actions a {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 11px 22px;
+            background: #4c35c9;
+            border-radius: 24px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .actions a:hover { background: #3d2b8f; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border: 1px solid #e8e6f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 14px;
+            text-align: left;
+            font-size: 14px;
+        }
+        th {
+            background: #f6f5fb;
+            color: #6b6880;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+        td { border-top: 1px solid #f0eef7; }
+        tr:hover td { background: #faf9fd; }
+    </style>
+</head>
+<body>
+
+    <h1>Medication Reminder</h1>
+    <p class="sub">Everyone we're keeping track of and what they're taking.</p>
+
+    <div class="actions">
+        <a href="/add-patient">+ Add patient</a>
+        <a href="/add-med">+ Add medication</a>
+    </div>
+
+    <table>
+        <tr>
+            <th>Patient</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Medication</th>
+            <th>Dosage</th>
+            <th>Reminder Time</th>
+        </tr>
+
+        <!-- Loop through whatever the database sent over -->
+        {% for med in meds %}
+        <tr>
+            <td>{{ med.name }}</td>
+            <td>{{ med.email }}</td>
+            <td>{{ med.phone }}</td>
+            <td>{{ med.med_name }}</td>
+            <td>{{ med.dosage }}</td>
+            <td>{{ med.reminder_time }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>
