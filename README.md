@@ -1,6 +1,6 @@
 # Medication Reminder
 
-**[Live Demo](https://medication-reminder-production-cec7.up.railway.app)** · Flask · MySQL · Twilio
+**[Live Demo](https://medication-reminder-production-cec7.up.railway.app/)** · Flask · MySQL · Twilio
 
 A Flask app that checks who needs to take what, and actually tells them — by email and SMS.
 
@@ -14,8 +14,8 @@ Built it because reminder apps assume the person needing reminding is the one ho
 - Logs every send so nobody gets the same reminder twice
 - Web forms for adding patients and meds, so you never touch SQL
 
-<!-- screenshots go here -->
 ![Dashboard](screenshots/dashboard.png)
+
 ![Reminder email](screenshots/email.png)
 
 ## Quick start
