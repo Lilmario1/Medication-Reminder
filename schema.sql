@@ -1,10 +1,3 @@
--- Medication Reminder App
--- Database schema
-
-CREATE DATABASE medication_reminder;
-USE medication_reminder;
-
--- Who we're reminding
 CREATE TABLE patients (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -12,7 +5,6 @@ CREATE TABLE patients (
     phone VARCHAR(20)
 );
 
--- What they take and when
 CREATE TABLE medications (
     id INT AUTO_INCREMENT PRIMARY KEY,
     patient_id INT,
@@ -23,7 +15,6 @@ CREATE TABLE medications (
     FOREIGN KEY (patient_id) REFERENCES patients(id)
 );
 
--- Log of reminders we've sent
 CREATE TABLE reminders (
     id INT AUTO_INCREMENT PRIMARY KEY,
     medication_id INT,
@@ -33,9 +24,8 @@ CREATE TABLE reminders (
     FOREIGN KEY (medication_id) REFERENCES medications(id)
 );
 
--- Sample data for testing
 INSERT INTO patients (name, email, phone) 
 VALUES ('Test Patient', 'test@example.com', '+15550000000');
 
 INSERT INTO medications (patient_id, med_name, dosage, reminder_time, frequency) 
-VALUES (1, 'Vitamin D', '1000 IU', '09:00:00', 'daily');s
+VALUES (1, 'Vitamin D', '1000 IU', '09:00:00', 'daily');
