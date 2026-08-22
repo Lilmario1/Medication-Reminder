@@ -12,7 +12,7 @@ def get_db():
     return mysql.connector.connect(
         host=os.getenv("MYSQLHOST", "mysql.railway.internal"),
         user=os.getenv("DB_USER") or os.getenv("MYSQLUSER", "root"),
-        password=os.getenv("DB_PASSWORD") or os.getenv("MYSQLPASSWORD"),
+        password=os.getenv("DB_PASSWORD") or os.getenv("MYSQLPASSWORD", "nUvClXVEPeQcdLBNBnZCA1YGFTKPFzY"),
         database=os.getenv("DB_NAME", "railway"),
         port=int(os.getenv("MYSQLPORT", 3306))
     )
