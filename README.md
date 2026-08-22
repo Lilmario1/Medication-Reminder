@@ -1,5 +1,7 @@
 # Medication Reminder
 
+**[Live Demo](https://medication-reminder-production-cec7.up.railway.app)** · Flask · MySQL · Twilio
+
 A Flask app that checks who needs to take what, and actually tells them — by email and SMS.
 
 Built it because reminder apps assume the person needing reminding is the one holding the phone. That's often not true. This one lets someone else manage the schedule while the patient just gets a message.
@@ -12,9 +14,41 @@ Built it because reminder apps assume the person needing reminding is the one ho
 - Logs every send so nobody gets the same reminder twice
 - Web forms for adding patients and meds, so you never touch SQL
 
-## Stack
+<!-- screenshots go here -->
+![Dashboard](screenshots/dashboard.png)
+![Reminder email](screenshots/email.png)
 
-Python 3.14 · Flask · MySQL · Twilio · smtplib · python-dotenv
+## Quick start
+
+```bash
+git clone https://github.com/Lilmario1/Medication-Reminder.git
+cd Medication-Reminder
+pip install -r requirements.txt
+mysql -u root -p < schema.sql
+```
+
+Create a `.env`:
+
+```
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=medication_reminder
+
+EMAIL_ADDRESS=
+EMAIL_PASSWORD=
+
+TWILIO_SID=
+TWILIO_TOKEN=
+TWILIO_NUMBER=
+```
+
+Gmail needs an [App Password](https://myaccount.google.com/apppasswords), not your account password — 2-Step Verification has to be on first.
+
+```bash
+python app.py        # web interface on :5001
+python reminder.py   # check and send
+```
 
 ## How it works
 
@@ -44,36 +78,6 @@ Three tables:
 - **reminders** — what was sent, when, by which channel, and whether it worked
 
 The `reminders` table is what makes this safe to run repeatedly. Without it the script has no memory and will happily spam someone.
-
-## Running it
-
-```bash
-pip install -r requirements.txt
-mysql -u root -p < schema.sql
-```
-
-Create a `.env`:
-
-```
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=
-DB_NAME=medication_reminder
-
-EMAIL_ADDRESS=
-EMAIL_PASSWORD=
-
-TWILIO_SID=
-TWILIO_TOKEN=
-TWILIO_NUMBER=
-```
-
-Gmail needs an [App Password](https://myaccount.google.com/apppasswords), not your account password — 2-Step Verification has to be on first.
-
-```bash
-python app.py        # web interface on :5001
-python reminder.py   # check and send
-```
 
 ## Known limitations
 
